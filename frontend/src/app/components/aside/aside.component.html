@@ -1,0 +1,52 @@
+<aside class="bg-[#1e2137] py-6 pr-10 w-64 border-r border-gray-200 overflow-y-auto overflow-x-hidden h-[100vh]">
+ <div class="border-white gap-x-3 bg-white w-full ml-2 rounded-lg p-3 flex justify-center items-center">
+  <input type="text" placeholder="Search ..." class="focus:outline-0  w-4/5">
+  <fa-icon [icon]="iconSearch"></fa-icon>
+ </div>
+  <ul *ngFor="let group of sidebar" class="flex flex-col gap-y-6 pt-10">
+    <li *ngFor="let item of group" >
+      <a
+        class="flex py-2 gap-x-4 items-start text-gray-500 hover:text-indigo-600 group"
+        routerLink="{{ item.path }}"
+      >
+        <span
+          class="w-1.5 h-8 rounder-r-full left-0 scale-y-0 bg-indigo-600 -translate-x-full group-hover:scale-y-100 group-hover:translate-x-0"
+        ></span>
+        <span
+          ><fa-icon class="fill-current w-6 h-6" [icon]="item.icon"></fa-icon>
+        </span>
+        <span> {{ item.name }}</span></a
+      >
+    </li>
+  </ul>
+  <a
+    *ngIf="token;else logout "
+    class="flex py-2 gap-x-4 items-start text-gray-500 hover:text-indigo-600 group"
+    (click)="handleLogout()"
+    href="#"
+routerLink="/login"
+    >
+    <span
+      class="w-1.5 h-8 rounder-r-full left-0 scale-y-0 bg-indigo-600 -translate-x-full group-hover:scale-y-100 group-hover:translate-x-0"
+    ></span>
+    <span
+      ><fa-icon class="fill-current w-6 h-6" [icon]="iconLogout"></fa-icon>
+    </span>
+    <span> LogOut</span></a
+  >
+  <ng-template #logout>
+    <a
+    class="flex py-2 gap-x-4 items-start text-gray-500 hover:text-indigo-600 group"
+    routerLink="/login"
+  >
+    <span
+      class="w-1.5 h-8 rounder-r-full left-0 scale-y-0 bg-indigo-600 -translate-x-full group-hover:scale-y-100 group-hover:translate-x-0"
+    ></span>
+    <span
+      ><fa-icon class="fill-current w-6 h-6" [icon]="iconLogout"></fa-icon>
+    </span>
+    <span>Login</span></a
+  >
+  </ng-template>
+
+</aside>

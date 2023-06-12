@@ -1,0 +1,48 @@
+<div class="flex items-cemter py-7 px-10 justify-between">
+  <div class="">
+    <h1 class="text-2xl text-gray-800 font-semibold">List Member</h1>
+    <p class="text-sm font-medium text-gray-500 ">Create your member grow and upload here</p>
+  </div>
+  <button routerLink="/project/create" class="inline-flex gap-x-2 items-center px-6 py-2.5 rounded-xl bg-indigo-600 text-white">
+    <fa-icon class="w-6 h-6 fill-current" [icon]="plusIcon"></fa-icon>
+    <span class="text-sm tracking-wide">Create Member</span>
+  </button>
+</div>
+
+<table class="w-full border-b border-gray-200">
+  <thead>
+    <tr class="text-sm font-medium text-gray-700 border-b border-gray-200">
+      <td class="py-4 px-4 text-center">UserName</td>
+      <td class="py-4 px-4 text-center">Email</td>
+      <td class="py-4 px-4 text-center">Phone</td>
+      <td class="py-4 px-4 text-center">Address</td>
+      <td class="py-4 px-4 text-center">Role</td>
+      <td class="py-4 pr-10 pl-4 text-center">
+
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+     *ngFor="let user of data"
+      class="hover:bg-gray-100 transition-colors group"
+    >
+      <td class="font-medium text-center">{{ user.username }}</td>
+      <td class="font-medium text-center">{{ user.email }}</td>
+      <td class="font-medium text-center">{{ user.phone }}</td>
+      <td class="font-medium text-center">{{ user.address }}</td>
+      <td class="font-medium text-center">{{ user.role === 1 ? "Manager" : "Staff"}}</td>
+      <td>
+        <button (click)="handleDelete(user._id)">
+          <fa-icon class="h-6 w-6 text-red-600" [icon]="faTrash"></fa-icon>
+        </button>
+        <button class="ml-5">
+          <a href="" [routerLink]="['/user/edit/'+ user._id]"> <fa-icon class="h-6 w-6 text-green-600" [icon]="faEdit"></fa-icon> </a>
+
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

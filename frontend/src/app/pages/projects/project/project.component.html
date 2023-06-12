@@ -1,0 +1,55 @@
+<div class="flex items-cemter py-7 px-10 justify-between">
+  <div class="">
+    <h1 class="text-2xl text-gray-800 font-semibold">Project</h1>
+    <p class="text-sm font-medium text-gray-500 ">Create your project grow and upload here</p>
+  </div>
+  <button routerLink="/project/create" class="inline-flex gap-x-2 items-center px-6 py-2.5 rounded-xl bg-indigo-600 text-white">
+    <fa-icon class="w-6 h-6 fill-current" [icon]="plusIcon"></fa-icon>
+    <span class="text-sm tracking-wide">Create Project</span>
+  </button>
+</div>
+
+<table class="w-full border-b border-gray-200">
+  <thead>
+    <tr class="text-sm font-medium text-gray-700 border-b border-gray-200">
+      <td class="py-4 px-4 text-center">Project Name</td>
+      <td class="py-4 px-4 text-center">Leader Name</td>
+      <td class="py-4 px-4 text-center">Team Size</td>
+      <td class="py-4 px-4 text-center">Expense</td>
+      <td class="py-4 px-4 text-center">Budget</td>
+      <td class="py-4 px-4 text-center">Day Start</td>
+      <td class="py-4 pr-10 pl-4 text-center">
+
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+     *ngFor="let project of data"
+      class="hover:bg-gray-100 transition-colors group"
+    >
+      <td class="font-medium text-center">{{ project.name_project }}</td>
+      <td class="font-medium text-center">{{ project.name_leader }}</td>
+      <td class="text-center">
+        <span class="font-medium">{{ project.team_size }}</span>
+        <span class="ml-3 text-gray-400">Member</span>
+      </td>
+      <td class="font-medium text-center">{{ project.expense }}</td>
+      <td class="font-medium text-center">{{ project.budget }}</td>
+      <td class="font-medium text-center">
+
+        {{convertToDay(project.day_start)}}
+      </td>
+      <td>
+        <button (click)="handleDelete(project._id)">
+          <fa-icon class="h-6 w-6 text-red-600" [icon]="faTrash"></fa-icon>
+        </button>
+        <button class="ml-5">
+          <a href="" [routerLink]="['/project/edit/'+ project._id]"> <fa-icon class="h-6 w-6 text-green-600" [icon]="faEdit"></fa-icon> </a>
+
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
