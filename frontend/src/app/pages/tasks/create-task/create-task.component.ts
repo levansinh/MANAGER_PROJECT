@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 import { ProjectService } from 'src/app/services/project.service';
+import { Project } from '../../../common/project';
 @Component({
   selector: 'app-create',
   templateUrl: './create-task.component.html',
@@ -13,6 +14,7 @@ import { ProjectService } from 'src/app/services/project.service';
 })
 export class CreateTaskComponent implements OnInit {
   leader: any = [];
+  project: any ;
   submitForm = new FormGroup({
     nameTask: new FormControl(''),
     description: new FormControl(''),
@@ -30,11 +32,10 @@ export class CreateTaskComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.userService.getWithRole(1).subscribe((data) => {
-      console.log(data.data);
       this.leader = data.data;
     });
     this.projectService.getAllProject().subscribe(data=>{
-      console.log(data);
+      this.project = data.data
     })
   }
   onSubmit() {

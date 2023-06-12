@@ -12,7 +12,7 @@
     <div class="relative z-0 w-full mb-6 group flex items-center gap-4">
       <label  for="countries" class="min-w-[100px] block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project</label>
       <select id="countries"  formControlName="nameProject" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option *ngFor="let item of leader" value={{item.username}}>{{item.username}}</option>
+        <option *ngFor="let item of project" value={{item.name_project}}>{{item.name_project}}</option>
       </select>
      </div>
     <div class="relative z-0 w-full mb-6 group flex items-center gap-4">
@@ -28,7 +28,7 @@
     <div class="relative z-0 w-full mb-6 group flex items-center gap-4">
       <label for="countries" class="block mb-2 min-w-[100px] text-sm font-medium text-gray-900 dark:text-white">Assigned to</label>
       <select id="countries"  formControlName="assignedTo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option value="123">123</option>
+        <option *ngFor="let item of leader" value={{item.username}}>{{item.username}}</option>
       </select>
      </div>
     <div class="relative z-0 w-full mb-6 group flex items-center gap-4">

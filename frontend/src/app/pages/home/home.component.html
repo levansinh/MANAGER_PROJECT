@@ -1,17 +1,32 @@
-<div class="flex items-center py-7 px-10 justify-between">
+<div class="flex flex-col gap-y-10 py-7 px-10 justify-between">
   <div class="flex flex-row gap-x-10 w-full">
-    <div  class="w-1/4 h-40  rounded-xl flex items-center justify-center bg-blue-500 text-white text-xl font-bold underline" >
-      123
+    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
+      <fa-icon [icon]="faBagShopping"></fa-icon>
+      <span>{{lengthProject}} Project</span>
     </div>
-    <div class="w-1/4 h-40 rounded-xl flex items-center justify-center bg-red-500 text-white text-xl font-bold underline" >
-      123
+    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
+      <fa-icon [icon]="faList"></fa-icon>
+      <span>{{lengthTask}} Task</span>
     </div>
-    <div class="w-1/4 h-40 rounded-xl flex items-center justify-center bg-yellow-500 text-white text-xl font-bold underline" >
-      123
+    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span>{{lengthUser}} User</span>
     </div>
-    <div class="w-1/4 h-40 rounded-xl flex items-center justify-center bg-green-500 text-white text-xl font-bold underline" >
-      123
+    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
+      <fa-icon [icon]="faTag"></fa-icon>
+      <span>${{totalPrice}}</span>
     </div>
-
+  </div>
+  <div class="flex flex-row justify-between">
+    <div class="bg-white px-10 py-5 w-1/3">
+      <h3 class="text-xl font-bold underline">Top new project</h3>
+      <ul class="flex flex-col gap-y-2 items-center w-full">
+        <li class="border-b-2 border-black py-1 w-full">123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>1232</li>
+      </ul>
+    </div>
   </div>
 </div>

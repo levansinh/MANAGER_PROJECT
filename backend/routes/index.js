@@ -10,7 +10,7 @@ import auth from "./auth.js";
 
 function router(app) {
   app.use("/user",verifyToken, user); // note check login Admin
-  app.use("/project", verifyTokenWithAdmin, project);
+  app.use("/project",verifyToken, project);
   app.use("/task",verifyToken, task);
   app.use("/auth", auth);
 }

@@ -31,10 +31,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       {
         path: 'project',
-        canActivate: [RoleGuard],
-        data: {
-          role: 1,
-        },
+
         children: [
           {
             path: '',
@@ -42,10 +39,18 @@ const routes: Routes = [
           },
           {
             path: 'create',
+            canActivate: [RoleGuard],
+            data: {
+              role: 1,
+            },
             component: CreateComponent,
           },
           {
             path: 'edit/:id',
+            canActivate: [RoleGuard],
+            data: {
+              role: 1,
+            },
             component: EditComponent,
           },
         ],
@@ -61,10 +66,6 @@ const routes: Routes = [
       {
         path: 'user',
         component: MemberComponent,
-        canActivate: [RoleGuard],
-        data: {
-          role: 1,
-        },
       },
       {
         path: 'infomation',

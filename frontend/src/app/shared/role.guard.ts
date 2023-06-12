@@ -33,7 +33,7 @@ export class RoleGuard implements CanActivate {
     const role = route.data['role']
 const dataUser = this.dataService.profile
     if (!this.authService.isAuthenticated() || dataUser?.role !== role) {
-      this.router.navigate(['/'])
+      this.router.navigate([this.router.url])
       this.toarst.warning("You do not have permission to access this page")
       return false;
     }

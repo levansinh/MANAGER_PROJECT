@@ -33,6 +33,7 @@ export const taskController = {
         description: req.body.description,
         assigned_to: req.body.assigned_to,
         priority: req.body.priority,
+        status: req.body.hoding,
       });
       const result = await task.save();
       res.status(200).json(result);
@@ -50,6 +51,7 @@ export const taskController = {
           description: req.body.description,
           assigned_to: req.body.assigned_to,
           priority: req.body.priority,
+          status: req.body.status,
         }
       );
       res.status(200).json({ message: "success", data: result });
