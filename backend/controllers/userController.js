@@ -43,6 +43,24 @@ export const userController = {
       });
     }
   },
+  update: async (req, res) => {
+    try {
+      const md5Password = md5(req.body.password);
+      const result = await UserModel.updateOne(
+        { _id: req.params.id },
+        {
+          username: req.body.username,
+          password: md5Password,
+          email: req.body.email,
+          phone: req.body.phone,
+          address: req.body.address,
+        }
+      );
+      res.status(200).json({ message: "success", data: result });
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
   updateImageUser: async (req, res) => {
     console.log(req.files)
     UserModel.findOneAndUpdate(

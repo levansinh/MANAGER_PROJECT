@@ -1,24 +1,22 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class DataService implements OnInit {
+  profile:any
   URL: string = 'http://localhost:5000';
-  profile: any;
   constructor(private httpClient: HttpClient) {}
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
-  getProfile() {
-    this.httpClient
-      .get<any>(`${this.URL}/user/profile`, { withCredentials: true })
-      .subscribe((data) => {
-        this.profile = data.profile;
-      });
+  ngOnInit(): void {
+    this.getProfile().subscribe(data=>{
+      this.profile = data.profile
+    })
+  }
+  getProfile(): Observable<any> {
+    return this.httpClient.get(`${this.URL}/user/profile`, {
+      withCredentials: true,
+    });
   }
 }

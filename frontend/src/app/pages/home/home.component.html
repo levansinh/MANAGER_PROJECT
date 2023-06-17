@@ -1,32 +1,150 @@
-<div class="flex flex-col gap-y-10 py-7 px-10 justify-between">
-  <div class="flex flex-row gap-x-10 w-full">
-    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
-      <fa-icon [icon]="faBagShopping"></fa-icon>
-      <span>{{lengthProject}} Project</span>
+<section>
+  <form action="" [formGroup]="submitForm" class="flex flex-col items-center gap-y-10 gap-x-5 m-3 ">
+    <h1 class="text-3xl font-bold w-20" >DashBoard</h1>
+    <div class="relative z-0 w-1/2 group ">
+      <select
+        id="countries"
+        formControlName="nameProject"
+        (change)="handleOnChange()"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+      <option value="" selected>Choose Project</option>
+        <option *ngFor="let item of projects" value="{{ item._id }}">
+          {{ item.name_project }}
+        </option>
+      </select>
     </div>
-    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
-      <fa-icon [icon]="faList"></fa-icon>
-      <span>{{lengthTask}} Task</span>
-    </div>
-    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
-      <fa-icon [icon]="faUser"></fa-icon>
-      <span>{{lengthUser}} User</span>
-    </div>
-    <div  class="w-1/4 h-40  rounded-xl flex flex-col gap-y-3 items-center justify-center bg-white text-black text-xl font-bold underline" >
-      <fa-icon [icon]="faTag"></fa-icon>
-      <span>${{totalPrice}}</span>
+  </form>
+
+
+  <div *ngIf="project" class="mb-[40px]">
+    <h2 class="text-center my-[20px] text-[20px] font-bold">
+      Project overview
+    </h2>
+    <div class="grid grid-cols-3 gap-[20px] mx-[20px]">
+      <div
+        class="flex items-center gap-[20px] bg-white rounded-[16px] shadow-lg text-[#333] p-[20px]"
+      >
+        <img
+          src="https://news.files.bbci.co.uk/include/newsspec/34096-cost-of-living-adaptive/assets/app-project-assets/img/index_illustration-mobile.png?v=2"
+          alt="Cost"
+          class="w-[100px] h-[100px] object-cover rounded-[12px]"
+        />
+        <div class="">
+          <h3 class="font-semibold text-[20px] mb-[10px]">Project cost</h3>
+          <p class="font-medium">
+            {{
+              project.budget.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD"
+              })
+            }}
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-[20px] bg-white rounded-[16px] shadow-lg text-[#333] p-[20px]"
+      >
+        <img
+          src="https://bizweb.dktcdn.net/thumb/grande/100/421/036/articles/tinh-gia-cost-nguyen-lieu-cach-quan-ly-chi-phi-hieu-qua.jpg?v=1616143414193"
+          alt="Cost"
+          class="w-[100px] h-[100px] object-cover rounded-[12px]"
+        />
+        <div class="">
+          <h3 class="font-semibold text-[20px] mb-[10px]">Currently spent</h3>
+          <p class="font-medium">
+            {{
+              project.expense.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD"
+              })
+            }}
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-[20px] bg-white rounded-[16px] shadow-lg text-[#333] p-[20px]"
+      >
+        <img
+          src="https://ps.w.org/cost-of-goods-for-woocommerce/assets/icon-256x256.png?rev=2583813"
+          alt="Cost"
+          class="w-[100px] h-[100px] object-cover rounded-[12px]"
+        />
+        <div class="">
+          <h3 class="font-semibold text-[20px] mb-[10px]">
+            The remaining amount
+          </h3>
+          <p class="font-medium">
+            {{
+              (project.budget - project.expense).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD"
+              })
+            }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="flex flex-row justify-between">
-    <div class="bg-white px-10 py-5 w-1/3">
-      <h3 class="text-xl font-bold underline">Top new project</h3>
-      <ul class="flex flex-col gap-y-2 items-center w-full">
-        <li class="border-b-2 border-black py-1 w-full">123</li>
-        <li>123</li>
-        <li>123</li>
-        <li>123</li>
-        <li>1232</li>
-      </ul>
+
+  <hr />
+
+  <div>
+    <h2 class="text-center mt-[20px] mb-[20px] text-[20px] font-bold">
+      Team Summary
+    </h2>
+    <div class="grid grid-cols-3 gap-[20px] mx-[20px]">
+      <div
+        class="flex items-center gap-[20px] bg-white rounded-[16px] shadow-lg text-[#333] p-[20px]"
+      >
+        <img
+          src="https://blog.vantagecircle.com/content/images/2021/01/Employee-Management-Meaning-Importance-Tips-Tools---More.png"
+          alt="Cost"
+          class="w-[100px] h-[100px] object-cover rounded-[12px]"
+        />
+        <div class="">
+          <h3 class="font-semibold text-[20px] mb-[10px]">
+            Number of employees
+          </h3>
+          <p class="font-medium">{{ userCount }}</p>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-[20px] bg-white rounded-[16px] shadow-lg text-[#333] p-[20px]"
+      >
+        <img
+          src="https://cloud4good.com/wp-content/uploads/2014/03/understanding-the-total-cost-of-ownership.jpg"
+          alt="Cost"
+          class="w-[100px] h-[100px] object-cover rounded-[12px]"
+        />
+        <div class="">
+          <h3 class="font-semibold text-[20px] mb-[10px]">
+            Total cost of all projects
+          </h3>
+          <p class="font-medium">
+            {{
+              totalPrice.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD"
+              })
+            }}
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex items-center gap-[20px] bg-white rounded-[16px] shadow-lg text-[#333] p-[20px]"
+      >
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2098/2098402.png"
+          alt="Cost"
+          class="w-[100px] h-[100px] object-cover rounded-[12px]"
+        />
+        <div class="">
+          <h3 class="font-semibold text-[20px] mb-[10px]">Tasks in progress</h3>
+          <p class="font-medium">{{ tasksInProgress }}</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
+

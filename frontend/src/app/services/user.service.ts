@@ -18,6 +18,9 @@ export class UserService {
   getAllUser():Observable<any>{
     return this.httpClient.get<any>(`${this.URL}`,{ withCredentials: true });
   }
+  getProfile():Observable<any>{
+    return this.httpClient.get<any>(`${this.URL}/profile`,{ withCredentials: true });
+  }
   getWithRole(role:number):Observable<any>{
     return this.httpClient.get<any>(`${this.URL}/role/${role}`,{ withCredentials: true });
   }

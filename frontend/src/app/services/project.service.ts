@@ -13,8 +13,8 @@ export class ProjectService {
   getAllProject():Observable<any>{
     return this.httpClient.get(`${this.URL}`,{ withCredentials: true });
   }
-  getOneProject(id:string):Observable<any>{
-    return this.httpClient.get(`${this.URL}/edit/${id}`,{ withCredentials: true });
+  getOneProject(id:any):Observable<any>{
+    return this.httpClient.get(`${this.URL}/${id}`,{ withCredentials: true });
   }
   addProject(data: Project):Observable<any> {
     return this.httpClient.post(this.URL, data,{ withCredentials: true });

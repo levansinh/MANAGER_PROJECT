@@ -1,11 +1,11 @@
 <form [formGroup]="submitForm" class="w-2/3 m-auto bg-white px-10 py-5 mt-10">
-  <h1 class="font-bold text-center text-2xl">Edit Task</h1>
+  <h1 class="font-bold text-center text-2xl">Create Task</h1>
   <div class="relative z-0 w-full mb-6 group">
-      <input type="text" formControlName="nameTask" value={{task.task_name}} id="nameProjecst" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <input type="text" formControlName="nameTask" id="nameProjecst" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
       <label  for="nameProjecst" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name Task</label>
   </div>
   <div class="relative z-0 w-full mb-6 group">
-      <input type="text" formControlName="description" value={{task.task_name}} id="floating_teamSize" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+      <input type="text" formControlName="description" id="floating_teamSize" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
       <label  for="floating_teamSize" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
   </div>
   <div class="flex">
@@ -25,20 +25,19 @@
      </div>
   </div>
   <div class="flex">
-    <div class="relative z-0 w-full mb-6 group flex items-center gap-4">
+    <div *ngIf="profile?.role === 1" class="relative z-0 w-full mb-6 group flex items-center gap-4">
       <label for="countries" class="block mb-2 min-w-[100px] text-sm font-medium text-gray-900 dark:text-white">Assigned to</label>
       <select id="countries"  formControlName="assignedTo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option *ngFor="let item of leader" value={{item.username}}>{{item.username}}</option>
+        <option *ngFor="let item of leader" value={{item._id}}>{{item.username}}</option>
       </select>
      </div>
     <div class="relative z-0 w-full mb-6 group flex items-center gap-4">
       <label for="countries" class="block mb-2 min-w-[100px] text-sm font-medium text-gray-900 dark:text-white">Status : </label>
-      <select id="countries" formControlName="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[200px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option selected value="hodding">Hodding</option>
-        <option  value="done">Done</option>
-      </select>
+      <span class="text-sm block mb-2 font-bold" name="hoding">Hoding</span>
      </div>
   </div>
   <button (click)="onSubmit()" type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
   <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 ml-5 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a routerLink="/task">List Task</a></button>
 </form>
+
+

@@ -14,7 +14,7 @@
   </button>
 </div>
 
-<table class="w-full border-b border-gray-200">
+<table *ngIf="task" class="w-full border-b border-gray-200">
   <thead>
     <tr class="text-sm font-medium text-gray-700 border-b border-gray-200">
       <td class="py-4 px-4 text-center">Task Name</td>
@@ -29,7 +29,7 @@
   </thead>
   <tbody>
     <tr
-      *ngFor="let project of data"
+      *ngFor="let project of task"
       class="hover:bg-gray-100 transition-colors group"
     >
       <td class="font-medium text-center">{{ project.task_name }}</td>

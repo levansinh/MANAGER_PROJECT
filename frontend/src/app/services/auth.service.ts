@@ -56,4 +56,9 @@ export class AuthService {
     }
     return false;
   }
+
+  update(id:any,data: register):Observable<any> {
+    let API_URL = `${this.URL}/user/edit/${id}`;
+    return this.httpClient.put(API_URL, data,{ withCredentials: true });
+  }
 }

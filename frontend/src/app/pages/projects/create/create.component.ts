@@ -37,7 +37,7 @@ export class CreateComponent implements OnInit {
     const nameLeader = this.submitForm.controls.nameLeader.value;
     const expense = this.submitForm.controls.expense.value;
     const budget = this.submitForm.controls.budget.value;
-    const newData = {
+    const newData:any = {
       name_leader: nameLeader,
       name_project: nameProject,
       team_size: teamSize,

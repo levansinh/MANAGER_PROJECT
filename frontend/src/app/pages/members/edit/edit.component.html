@@ -1,0 +1,193 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div
+    class="flex flex-col items-center justify-center px-8 py-8 mx-auto md:h-screen lg:py-0"
+  >
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+        >
+          Sign Up to your account
+        </h1>
+        <form
+          class="space-y-4 md:space-y-6"
+          action="#"
+          [formGroup]="submitForm"
+          novalidate
+        >
+          <div>
+            <label
+              for="username"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Your username</label
+            >
+            <input
+              formControlName="username"
+              type="text"
+              name="username"
+              id="username"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="name@company.com"
+              required=""
+            />
+            <div
+              class="text-sm text-red-400"
+              *ngIf="
+                submitForm.get('username')?.hasError('required') &&
+                (submitForm.get('username')?.touched ||
+                  submitForm.get('username')?.dirty)
+              "
+            >
+              Username is not valid
+            </div>
+          </div>
+          <div>
+            <label
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Password</label
+            >
+            <input
+              formControlName="password"
+              type="password"
+              name="password"
+              id="password"
+              placeholder="••••••••"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required=""
+            />
+            <div
+              class="text-sm text-red-400"
+              *ngIf="
+                submitForm.get('password')?.hasError('required') &&
+                (submitForm.get('password')?.touched ||
+                  submitForm.get('password')?.dirty)
+              "
+            >
+              Password is not valid
+            </div>
+            <div
+              class="text-red-600"
+              *ngIf="
+                submitForm.get('password')?.hasError('minlength') &&
+                (submitForm.get('password')?.touched ||
+                  submitForm.get('password')?.dirty)
+              "
+              class="text-sm text-red-400"
+            >
+              Password tối thiểu 6 kí tự
+            </div>
+          </div>
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >email</label
+            >
+            <input
+              formControlName="email"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="lesinh3005@gmail.com"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required=""
+            />
+            <div
+              class="text-sm text-red-400"
+              *ngIf="
+                submitForm.get('email')?.hasError('required') &&
+                (submitForm.get('email')?.touched ||
+                  submitForm.get('email')?.dirty)
+              "
+            >
+              Email is not valid
+            </div>
+          </div>
+          <div>
+            <label
+              for="phone"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >Phone</label
+            >
+            <input
+              formControlName="phone"
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="0325610016"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required=""
+            />
+            <div
+              class="text-sm text-red-400"
+              *ngIf="
+                submitForm.get('phone')?.hasError('required') &&
+                (submitForm.get('phone')?.touched ||
+                  submitForm.get('phone')?.dirty)
+              "
+            >
+              Phone is not valid
+            </div>
+            <div
+              class="text-red-600"
+              *ngIf="
+                submitForm.get('phone')?.hasError('minlength') &&
+                (submitForm.get('phone')?.touched ||
+                  submitForm.get('phone')?.dirty)
+              "
+              class="text-sm text-red-400"
+            >
+              Phone tối thiểu 10 kí tự
+            </div>
+          </div>
+          <div>
+            <label
+              for="address"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >address</label
+            >
+            <input
+              formControlName="address"
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Đà nẵng"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required=""
+            />
+            <div
+              class="text-sm text-red-400"
+              *ngIf="
+                submitForm.get('address')?.hasError('required') &&
+                (submitForm.get('address')?.touched ||
+                  submitForm.get('address')?.dirty)
+              "
+            >
+              Address is not valid
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-start"></div>
+            <a
+              href="#"
+              routerLink="/login"
+              class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+              >Had account?</a
+            >
+          </div>
+          <button
+            type="submit"
+            (click)="onSubmit()"
+            [disabled]="!submitForm.valid"
+            class="w-full text-white bg-blue-400 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Sign up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

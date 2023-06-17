@@ -14,7 +14,9 @@ import { ListTaskComponent } from './pages/tasks/list-task/list-task.component';
 import { CreateTaskComponent } from './pages/tasks/create-task/create-task.component';
 import { EditTaskComponent } from './pages/tasks/edit-task/edit-task.component';
 
-import { MemberComponent } from './pages/member/member.component';
+import { MemberComponent } from './pages/members/member/member.component';
+import { CreateMemberComponent } from './pages/members/create/create.component';
+import { EditMemberComponent } from './pages/members/edit/edit.component';
 
 import { InfomationComponent } from './pages/infomation/infomation.component';
 
@@ -59,13 +61,37 @@ const routes: Routes = [
         path: 'task',
         children: [
           { path: '', component: ListTaskComponent },
-          { path: 'create', component: CreateTaskComponent },
-          { path: 'edit/:id', component: EditTaskComponent },
+          {
+            path: 'create',
+            component: CreateTaskComponent,
+          },
+          {
+            path: 'edit/:id',
+            component: EditTaskComponent,
+          },
         ],
       },
       {
         path: 'user',
-        component: MemberComponent,
+        children: [
+          { path: '', component: MemberComponent },
+          {
+            path: 'create',
+            component: CreateMemberComponent,
+            canActivate: [RoleGuard],
+            data: {
+              role: 1,
+            },
+          },
+          {
+            path: 'edit/:id',
+            component: EditMemberComponent,
+            canActivate: [RoleGuard],
+            data: {
+              role: 1,
+            },
+          },
+        ],
       },
       {
         path: 'infomation',

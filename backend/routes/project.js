@@ -10,7 +10,7 @@ router.delete('/:id',verifyTokenWithAdmin,projectController.delete)
 router.put('/edit/:id',verifyTokenWithAdmin,projectController.update)
 router.post('/',verifyTokenWithAdmin,projectController.create)
 
-router.get('/edit/:id',verifyTokenWithAdmin,projectController.getOne)
+router.get('/:id',projectController.getOne)
 router.get('/',projectController.getAll)
 
 export default router

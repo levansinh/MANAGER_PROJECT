@@ -22,18 +22,17 @@ export class ProjectComponent implements OnInit {
     private toastr: ToastrService
   ) {}
   ngOnInit(): void {
-  
     this.projectService.getAllProject().subscribe((data) => {
       this.data = data.data;
     });
   }
   handleDelete(id: string) {
-    if (confirm('Bạn có muốn xóa ???')) {
-      this.projectService.deleteProject(id).subscribe((data) => {
+    this.projectService.deleteProject(id).subscribe((data) => {
+      if (confirm('???')) {
         this.ngOnInit();
         this.toastr.success('You have deleted Successfully');
-      });
-    }
+      }
+    });
   }
   convertToDay(dateString: string) {
     const date = new Date(dateString);

@@ -14,7 +14,9 @@ export class MemberComponent {
   faTrash=faTrash
   faEdit=faPenToSquare
   data: any = [];
-  constructor(private userService: UserService,private toastr:ToastrService) {}
+  constructor(private userService: UserService,private toastr:ToastrService) {
+    
+  }
   ngOnInit(): void {
     this.userService.getAllUser().subscribe((data) => {
       console.log(data);
@@ -22,12 +24,12 @@ export class MemberComponent {
     });
   }
   handleDelete(id: string) {
-    if (confirm('Bạn có muốn xóa ???')) {
-      this.userService.deleteUser(id).subscribe((data) => {
+    this.userService.deleteUser(id).subscribe((data) => {
+        if (confirm('Bạn có muốn xóa ???')) {
         this.ngOnInit();
         this.toastr.success('You have deleted Successfully')
+      }
       });
-    }
   }
 
 }

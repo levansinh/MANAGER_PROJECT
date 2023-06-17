@@ -1,37 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { DataService } from 'src/app/services/data.service';
-import { faUser, faList, faBagShopping, faTag } from '@fortawesome/free-solid-svg-icons';
-import { ProjectService } from 'src/app/services/project.service';
 import { TaskService } from 'src/app/services/task.service';
+import {
+  faUser,
+  faList,
+  faBagShopping,
+  faTag,
+} from '@fortawesome/free-solid-svg-icons';
+import { ProjectService } from 'src/app/services/project.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Project } from 'src/app/common/project';
+// import { Project } from 'src/app/common/project';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  faTag:any = faTag
-  faList:any = faList
-  faUser:any = faUser
-  faBagShopping:any = faBagShopping
-  lengthUser:any = ''
-  lengthProject:any = ''
-  lengthTask:any = ''
-  totalPrice:any = ''
-  constructor(private data: DataService,private userService:UserService,private taskService:ProjectService,private projectService:ProjectService) {}
+  projects!: Project[];
+  project!: Project;
+  data!: any;
+  totalPrice: any = 0;
+  teamSize!: number;
+  tasksInProgress!: any;
+  userCount!: number;
+  constructor(
+    private dataSerice: DataService,
+    private userService: UserService,
+    private taskService: TaskService,
+    private projectService: ProjectService
+  ) {}
+  submitForm = new FormGroup({
+    nameProject: new FormControl(''),
+  });
   ngOnInit(): void {
-    this.userService.getAllUser().subscribe(data=>{
-      console.log(data.length);
-      this.lengthUser =data.length
-    })
-    this.taskService.getAllProject().subscribe(data=>{
-      
-      this.lengthProject =data.data.length
-      this.totalPrice =data.data.map((item:any):any=>item.budget).reduce((curr:any, sum:any )=> curr +sum)
-    })
-    this.projectService.getAllProject().subscribe(data=>{
-      console.log(data.data.length);
-      this.lengthTask =data.data.length
-    })
+    this.projectService.getAllProject().subscribe((data) => {
+      this.projects = data.data;
+      this.totalPrice = this.projects.reduce(
+        (total, curr) => total + curr.budget,
+        0
+      );
+      console.log(this.totalPrice);
+    });
+    this.userService.getAllUser().subscribe((data) => {
+      this.userCount = data.length;
+    });
+    this.taskService.getAllTask().subscribe((data) => {
+       const totalTask= data.data.filter(
+        (task: any) => task.status === 'hoding'
+      );
+      this.tasksInProgress =totalTask.length;
+    });
+  }
+  handleOnChange() {
+    this.projectService
+      .getOneProject(this.submitForm.controls.nameProject.value)
+      .subscribe((data) => {
+        this.project = data.data;
+        console.log(data.data);
+      });
   }
 }
